@@ -29,8 +29,8 @@ public class UserController {
     model.addAttribute("title", "Lista de usuarios");
 
     users.add(new User("Carlos", "Caraballo"));
-    users.add(new User("Xiomara", "Jimenez"));
-    users.add(new User("Pepe", "Santana"));
+    users.add(new User("Xiomara", "Jimenez", "xomi@example.com"));
+    users.add(new User("Pepe", "Santana", "pepe@example.com"));
 
     return "list";
   }
