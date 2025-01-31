@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -21,10 +22,16 @@ public class PathVariableController {
   private String username;
 
   @Value("${config.listOfValues}")
-  private String[] listOfValues;
+  private List<String> listOfValues;
 
   @Value("${config.code}")
   private Integer code;
+
+  @Value("#{'${config.listOfValues}'.toUpperCase().split(',')}")
+  private List<String> valueList;
+
+  @Value("#{'${config.listOfValues}'}")
+  private String valueString;
 
   @GetMapping("/baz/{message}")
   public ParamDto baz(
@@ -63,7 +70,8 @@ public class PathVariableController {
     json.put("message", message);
     json.put("listOfValues", this.listOfValues);
     json.put("code", this.code);
-
+    json.put("valueList", this.valueList);
+    json.put("valueString", this.valueString);
     return json;
   }
 
